@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+models_setup.txt
+models_setup.txt~
+public/img/
