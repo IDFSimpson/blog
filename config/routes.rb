@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get "/about" => "home#about"
 
+  resources :blog_posts
+
   root 'home#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
