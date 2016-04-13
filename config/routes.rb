@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get "/about" => "home#about"
 
-  resources :blog_posts
+  resources :posts
 
   root 'home#home'
 
