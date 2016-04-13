@@ -36,8 +36,13 @@ class PostsController < ApplicationController
   def show
   end
 
+  def destroy
+    @post.destroy
+    redirect_to posts_path, notice: "The blog post #{@post.title} was deleted."
+  end
+
   private
-  
+
   def find_post
      @post = Post.find params[:id]
   end
