@@ -33,9 +33,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def show 
+  def show
   end
 
+  private
+  
   def find_post
      @post = Post.find params[:id]
   end
