@@ -3,15 +3,15 @@ class CommentsController < ApplicationController
   before_action(:find_comment, {only: [:show, :edit, :update, :destroy]})
 
   def index
-    @comments = comment.all
+    @comments = Comment.all
   end
 
   def new
-    @comment = comment.new
+    @comment = Comment.new
   end
 
   def create
-    @comment = comment.create{comment_params}
+    @comment = Comment.create{comment_params}
     if @comment.save
       flash[:notice] = "Comment Created"
       redirect_to comment_path(comment_params)
@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
   private
 
   def find_comment
-     @comment = comment.find params[:id]
+     @comment = Comment.find params[:id]
   end
 
   def comment_params
