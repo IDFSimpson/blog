@@ -11,10 +11,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.create{comment_params}
+    @comment = Comment.new(comment_params)
     if @comment.save
       flash[:notice] = "Comment Created"
-      redirect_to comment_path(comment_params)
+      redirect_to comment_path(@comment)
     else
       flash[:alert] = "Error! Comment not created"
       render :new
@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit([:body])
+    params.require(:comment).permit(:body)
   end
 
 end
