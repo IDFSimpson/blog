@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-   before_action(:find_post, {only: [:show, :edit, :update, :destroy]})
+  before_action(:find_post, {only: [:show, :edit, :update, :destroy]})
 
 
   def index
@@ -12,10 +12,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new{post_params}
+    @post = Post.new(post_params)
     if @post.save
       flash[:notice] = "Post Created"
-      redirect_to post_path(post_params)
+      redirect_to post_path(@post)
     else
       flash[:alert] = "Error! Post not created"
       render :new
