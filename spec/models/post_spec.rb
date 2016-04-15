@@ -1,0 +1,53 @@
+require 'rails_helper'
+
+RSpec.describe Post, type: :model do
+  # pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "validations" do
+    it "requires a title" do
+      # p0 = FactoryGirl.create(:post, title: nil)
+      p0 = Post.new(title: nil)
+      p0.valid?
+      expect(p0.errors).to have_key(:title)
+    end
+
+    it "must have a title longer than 7 characters" do
+      # p0 = FactoryGirl.create(:post, title: "1234")
+      p0 = Post.new(title: "1234")
+      p0.valid?
+      expect(p0.errors).to have_key(:title)
+
+    end
+
+    it "requires a unique title" do
+      # p0 = FactoryGirl.create(:post, title: "same_title")
+      # p0.save
+      Post.create(title: "same_title", body: "df")
+      # p1 = FactoryGirl.create(:post, title: "same_title")
+      p1 = Post.new(title: "same_title", body: "af")
+      p1.valid?
+      expect(p1.errors).to have_key :title
+
+    end
+
+    it "requires a body" do
+      # p0 = FactoryGirl.create(:post, body: nil)
+      p0 = Post.new(body: nil)
+      p0.valid?
+      expect(p0.errors).to have_key(:body)
+    end
+
+    it "must have a method, body_snippet, that returns a shortened body" do
+      body = Faker::Lorem.characters(99)
+      p0 = FactoryGirl.create(:post, body: "#{body}abcd")
+      expect(p0.body_snippet).to eq("#{body}...")
+    end
+
+    it "must have a method, body_snippet, that doesn't change small body strings " do
+      body = Faker::Lorem.characters(99)
+      p0 = FactoryGirl.create(:post, body: body)
+      expect(p0.body_snippet).to eq(body)
+    end
+
+  end
+end
