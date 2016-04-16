@@ -11,10 +11,12 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @post = Post.find params[:post_id]
     @comment = Comment.new(comment_params)
+    @comment.post = @post
     if @comment.save
       flash[:notice] = "Comment Created"
-      redirect_to comment_path(@comment)
+      redirect_to post_path(@post)
     else
       flash[:alert] = "Error! Comment not created"
       render :new

@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   get "/about" => "home#about"
 
-  resources :posts
-  resources :comments
+  resources :posts do
+    resources :comments
+  end
 
   root 'home#home'
 

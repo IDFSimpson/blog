@@ -8,3 +8,18 @@ div
   = link_to "Edit", edit_post_path(@post)
 div
   = link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure you want to delete this post?"}
+  
+= @comment.errors.full_messages.join(", ")
+
+= form_for @comment, url: post_comments_path(@post) do |f|
+  = form_for [@post, @comment] do |form_helper| 
+    = form_helper.text_area :body
+    = form_helper.submit
+
+h3 Comments
+- @post.comments.each do |comment|
+  = by comment.email_or_unknown
+  = comment.body
+  = link_to "delete", post_comment_path(@post, comment),
+                      data: {confirm: "Are you sure?"},
+                      method: :delete
