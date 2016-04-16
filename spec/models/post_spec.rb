@@ -37,6 +37,7 @@ RSpec.describe Post, type: :model do
 
     it "must have a method, body_snippet, that returns a shortened body" do
       body = Faker::Lorem.characters(99)
+      # I appended "abcd" to push it over 100 characters and so I could experiment manualy
       p0 = Post.new(title:"title", body: "#{body}abcd")
       expect(p0.body_snippet).to eq("#{body}...")
     end
