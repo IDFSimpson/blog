@@ -5,6 +5,9 @@
     <%= link_to p.title, post_path(p) %>
   </div>
   <div>
+    Category: <%= p.category_or_unknown %>
+  </div>
+  <div>
     <%= p.body %>
   </div>
 <% end %>
