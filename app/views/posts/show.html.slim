@@ -2,6 +2,9 @@ div
   h2 
     = @post.title
 div
+    | Category: 
+    = @post.category_or_unknown    
+div
   = @post.body
 
 div

@@ -6,7 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# B log post seed
 100.times do
   Post.create title:  Faker::Company.bs,
               body:   Faker::Lorem.paragraph
 end
+
+# category seed. shouldn't run too often
+# 10.times { FactoryGirl.create(:category) }

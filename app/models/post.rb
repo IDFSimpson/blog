@@ -10,4 +10,9 @@ class Post < ActiveRecord::Base
   def body_snippet
     body.length > 99 ? "#{self.body[0...99]}..." : body
   end
+
+  def category_or_unknown
+    category ? category.title : "Unknown Category"
+  end
+
 end
