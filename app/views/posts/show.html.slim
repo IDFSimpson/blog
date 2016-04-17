@@ -18,7 +18,6 @@ div
 
 h3 Comments
 - @post.comments.each do |comment|
-  = by comment.email_or_unknown
   = comment.body
   = link_to "delete", post_comment_path(@post, comment),
                       data: {confirm: "Are you sure?"},
