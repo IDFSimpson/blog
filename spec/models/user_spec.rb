@@ -10,13 +10,13 @@ RSpec.describe User, type: :model do
     it "requires a first_name" do
       u = User.new(valid_attributes.merge first_name: nil)
       u.valid?
-      expect(u.errors).to have_key(:name)
+      expect(u.errors).to have_key(:first_name)
     end
 
     it "requires a last_name" do
       u = User.new(valid_attributes.merge last_name: nil)
       u.valid?
-      expect(u.errors).to have_key(:name)
+      expect(u.errors).to have_key(:last_name)
     end
 
     it "requires a email" do
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
       e = User.new(valid_attributes)
       e.valid?
 
-      expect(p1.errors).to have_key :title
+      expect(e.errors).to have_key :email
     end
 
     it "requires a password" do
@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
     it "hashes the password" do
       pass = "supersecret"
       u = User.new(valid_attributes.merge password: pass)
-      expect(u.password).not_to eq(pass)
+      expect(u.password_digest).not_to eq(pass)
     end
   end
 
