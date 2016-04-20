@@ -8,9 +8,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :users #, only: [:new, :create]
+  resources :users
 
-  resources :sessions, only: [:new, :create]
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
 
   root 'home#home'
 
