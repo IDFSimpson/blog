@@ -6,11 +6,11 @@ div
     = @post.category_or_unknown    
 div
   = @post.body
-
-div
-  = link_to "Edit", edit_post_path(@post)
-div
-  = link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure you want to delete this post?"}
+- if user_signed_in?
+  div
+    = link_to "Edit", edit_post_path(@post)
+  div
+    = link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure you want to delete this post?"}
   
 = @comment.errors.full_messages.join(", ")
 
@@ -22,6 +22,7 @@ div
 h3 Comments
 - @post.comments.each do |comment|
   = comment.body
-  = link_to "delete", post_comment_path(@post, comment),
-                      data: {confirm: "Are you sure?"},
-                      method: :delete
+  - if user_signed_in?
+    = link_to "delete", post_comment_path(@post, comment),
+                        data: {confirm: "Are you sure?"},
+                        method: :delete
