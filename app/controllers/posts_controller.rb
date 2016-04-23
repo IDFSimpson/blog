@@ -42,13 +42,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
+    @post.destroyapp/controllers/posts_controller.rb
     redirect_to posts_path, notice: "The blog post #{@post.title} was deleted."
   end
 
   private
 
-  def authorize_question
+  def authorize_post
     redirect_to root_path unless can? :manage, @post
   end
 
