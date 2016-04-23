@@ -2,6 +2,8 @@ class PostsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
   before_action(:find_post, {only: [:show, :edit, :update, :destroy]})
+  before_action :authorize_post, only: [:edit, :update, :destroy]
+
 
 
   def index
@@ -45,6 +47,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def authorize_question
+    redirect_to root_path unless can? :manage, @post
+  end
 
   def find_post
      @post = Post.find params[:id]
