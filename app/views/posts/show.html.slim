@@ -23,7 +23,7 @@ div
 h3 Comments
 - @post.comments.each do |comment|
   = comment.body
-  - if user_signed_in?
+  - if can? :delete, @post
     = link_to "delete", post_comment_path(@post, comment),
                         data: {confirm: "Are you sure?"},
                         method: :delete

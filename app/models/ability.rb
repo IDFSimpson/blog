@@ -16,9 +16,9 @@ class Ability
       post.user == user
     end
 
-    # can :manage, Answers do |ans|
-    #   ans.user == user
-    # end
+    can :manage, Comment do |comment|
+      comment.user == user || comment.post.user == user 
+    end
 
 
     # Define abilities for the passed in user here. For example:

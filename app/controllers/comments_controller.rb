@@ -2,6 +2,9 @@ class CommentsController < ApplicationController
 
   before_action :authenticate_user!
   before_action(:find_comment, {only: [:show, :edit, :update, :destroy]})
+  before_action :authorize_comment, only: [:edit, :update, :destroy]
+
+
 
   def index
     @comments = Comment.all
@@ -49,6 +52,11 @@ class CommentsController < ApplicationController
 
   def find_comment
      @comment = Comment.find params[:id]
+  end
+
+  def authorize_comment
+    flash[:alert] "You do not have permission to delete this comment"
+    redirect_to root_path unless can? :manage, @pcomment
   end
 
   def comment_params
