@@ -3,11 +3,11 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true, length: {minimum: 7}
   validates :body,  presence: true
 
-  has_many   :comments, dependent: :destroy
+  has_many   :comments, dependent: :nullify
   belongs_to :category
   belongs_to :user
 
-  has_many    :favourites, dependent: :destroy
+  has_many    :favourites, dependent: :nullify
   has_many    :favouriting_users, through: :favourites, source: :users
 
   def body_snippet
