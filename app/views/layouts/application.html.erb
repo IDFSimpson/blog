@@ -7,23 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="menu">
-  <%= link_to("Home", home_path, {class: "menu-item"}) %>
-  <%= link_to("About", about_path, {class: "menu-item"}) %>
-  <%= link_to("Blog Posts", posts_path, {class: "menu-item"}) %>
-  <% if user_signed_in? %>
-    <%= link_to "Favourite Posts", favourites_path, {class: "menu-item"} %>
-    <%= link_to("Log Out", sessions_path, {class: "menu-item", method: :delete}) %>
-  <% else %>
-    <%= link_to "Sign In", new_session_path %>
-    <%= link_to "Sign Up", new_user_path %>
-  <% end %>
-</div>
-<div>
-  <%= notice || alert %>
-</div>
+<div class="container">
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to("Home", home_path, {class: "menu-item"}) %></li>
+        <li><%= link_to("About", about_path, {class: "menu-item"}) %></li>
+        <li><%= link_to("Blog Posts", posts_path, {class: "menu-item"}) %></li>
+      </ul>
+      <ul class ="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "Favourite Posts", favourites_path, {class: "menu-item"} %></li>
+          <li><%= link_to("Log Out", sessions_path, {class: "menu-item", method: :delete}) %></li>
+        <% else %>
+          <li><%= link_to "Sign In", new_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <%= notice || alert %>
+  </div>
 
-<%= yield %>
-
+  <%= yield %>
+</div>
 </body>
 </html>
