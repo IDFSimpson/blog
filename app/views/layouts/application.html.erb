@@ -17,6 +17,7 @@
       </ul>
       <ul class ="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li><%= link_to "New Blog Post", new_post_path, {class: "menu-item"} %></li>
           <li><%= link_to "Favourite Posts", favourites_path, {class: "menu-item"} %></li>
           <li><%= link_to("Log Out", sessions_path, {class: "menu-item", method: :delete}) %></li>
         <% else %>
