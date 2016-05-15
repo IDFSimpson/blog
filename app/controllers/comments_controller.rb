@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   before_action :authorize_comment, only: [:edit, :update, :destroy]
 
 
-
   def index
     @comments = Comment.all
   end
@@ -23,20 +22,20 @@ class CommentsController < ApplicationController
       redirect_to post_path(@post)
     else
       flash[:alert] = "Error! Comment not created"
-      render :new
+      render "/posts/show"
     end
   end
 
   def edit
   end
 
-  def update
-    if @comment.update comment_params
-      redirect_to comment_path(@comment), notice: "Comment updated!"
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @comment.update comment_params
+  #     redirect_to comment_path(@comment), notice: "Comment updated!"
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def show
   end
@@ -55,8 +54,8 @@ class CommentsController < ApplicationController
   end
 
   def authorize_comment
-    flash[:alert] "You do not have permission to delete this comment"
-    redirect_to root_path unless can? :manage, @pcomment
+    flash[:alert] = "You do not have permission to manage this comment"
+    redirect_to root_path unless can? :manage, @comment
   end
 
   def comment_params
