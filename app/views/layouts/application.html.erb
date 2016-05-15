@@ -27,7 +27,11 @@
     </div>
   </div>
   <div>
-    <%= notice || alert %>
+    <% if notice %>
+      <div class="alert alert-success"><%= notice %></div>
+    <% elsif alert %>
+      <div class="alert alert-danger"><%= alert %></div>
+    <% end %>
   </div>
 
   <%= yield %>
