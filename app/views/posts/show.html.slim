@@ -20,6 +20,8 @@ div
     = form_helper.text_area :body
     = form_helper.submit
 
+= render 'favourites/favourite'
+
 h3 Comments
 - @post.comments.each do |comment|
   = comment.body

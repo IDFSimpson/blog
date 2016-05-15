@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
 
   validates :password, presence: true
 
+  has_many :favourites, dependent: :destroy
+  has_many :favourite_posts, through: :favourites, source: :post
 end

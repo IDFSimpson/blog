@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments
+    resources :favourites, only: [:create, :destroy]
   end
+  resources :favourites, only: [:index]
 
   resources :users
 

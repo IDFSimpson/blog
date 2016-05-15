@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
 
+  has_many    :favourites, dependent: :destroy
+  has_many    :favouriting_users, through: :favourites, source: :users
 
   def body_snippet
     body.length > 99 ? "#{self.body[0...99]}..." : body
@@ -14,6 +16,14 @@ class Post < ActiveRecord::Base
 
   def category_or_unknown
     category ? category.title : "Unknown Category"
+  end
+
+  def favourite_for(user)
+    favourites.find_by_user_id(user.id)
+  end
+
+  def favourited_by?(user)
+    favourites.find_by_user_id(user.id).present?
   end
 
 end

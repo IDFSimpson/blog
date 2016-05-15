@@ -12,6 +12,7 @@
   <%= link_to("About", about_path, {class: "menu-item"}) %>
   <%= link_to("Blog Posts", posts_path, {class: "menu-item"}) %>
   <% if user_signed_in? %>
+    <%= link_to "Favourite Posts", favourites_path, {class: "menu-item"} %>
     <%= link_to("Log Out", sessions_path, {class: "menu-item", method: :delete}) %>
   <% else %>
     <%= link_to "Sign In", new_session_path %>
