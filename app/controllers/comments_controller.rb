@@ -18,12 +18,16 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.post = @post
     @comment.user = current_user
-    if @comment.save
-      flash[:notice] = "Comment Created"
-      redirect_to post_path(@post)
-    else
-      flash[:alert] = "Error! Comment not created"
-      render "/posts/show"
+    respond_to do |format|
+      if @comment.save
+        flash[:notice] = "Comment Created"
+        format.html { redirect_to post_path(@post) }
+        format.js   { render :reload }
+      else
+        flash[:alert] = "Error! Comment not created"
+        format.html { render "/posts/show" }
+        format.js   { render :reload }
+      end
     end
   end
 

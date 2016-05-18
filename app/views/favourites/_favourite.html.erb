@@ -1,5 +1,5 @@
-<% if user_signed_in? && @post.favourited_by?(current_user)%>
-  <%= link_to "Unfavourite", post_favourite_path(@post, @post.favourite_for(current_user)), method: :delete, class: "glyphicon glyphicon-star" %>
+<% if user_favourite.present? %>
+  <%= link_to "Unfavourite", post_favourite_path(@post, user_favourite), method: :delete, remote: true, class: "glyphicon glyphicon-star" %>
 <% else %>
-  <%= link_to "Favourite", post_favourites_path(@post), method: :post, class: "glyphicon glyphicon-star-empty" %>
+  <%= link_to "Favourite", post_favourites_path(@post), method: :post, remote: true, class: "glyphicon glyphicon-star-empty" %>
 <% end %>
