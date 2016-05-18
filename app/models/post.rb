@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   end
 
   def favourite_for(user)
-    favourites.find_by_user_id(user.id)
+    favourites.find_by_user_id user if user
   end
 
   def favourited_by?(user)
