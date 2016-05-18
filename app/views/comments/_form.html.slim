@@ -1,0 +1,5 @@
+= comment.errors.full_messages.join(", ")
+= form_for comment, url: post_comments_path(@post) do |f|
+  = form_for [@post, comment], remote: true do |form_helper| 
+    = form_helper.text_area :body, class: "form-control"
+    = form_helper.submit
