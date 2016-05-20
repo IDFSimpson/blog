@@ -1,0 +1,14 @@
+div
+  span
+    = comment.body 
+    |  by 
+    = comment.user.email
+    | 
+    span 
+      - if can? :delete, comment
+        = link_to "delete", post_comment_path(@post, comment),
+                            data: {confirm: "Are you sure?"},
+                            method: :delete,
+                            remote: true,
+                            class: "glyphicon glyphicon-remove"
+                      

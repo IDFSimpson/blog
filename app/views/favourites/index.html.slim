@@ -1,0 +1,5 @@
+h1 Your Favourite Products
+
+- @favourites.each do |favourite|
+  div
+    = link_to favourite.post.title, post_path(favourite.post)

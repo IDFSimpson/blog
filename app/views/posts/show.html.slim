@@ -1,0 +1,25 @@
+div
+  h2 
+    = @post.title
+div
+    | Category: 
+    = @post.category_or_unknown    
+div
+  = @post.body
+- if can? :edit, @post
+  div
+    = link_to "Edit", edit_post_path(@post), class: "glyphicon glyphicon-edit"
+- if can? :destroy, @post
+  div
+    = link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure you want to delete this post?"}, class: "glyphicon glyphicon-trash"
+    
+div id="favourite"
+  = render 'favourites/favourite'
+
+h3 Comments
+div id="comment_form"
+  = render "/comments/form", comment: @comment
+
+div id="comments"
+  - @post.comments.each do |comment|
+   = render "/comments/comment", comment: comment

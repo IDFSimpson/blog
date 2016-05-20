@@ -7,8 +7,35 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to("Home", home_path, {class: "menu-item"}) %></li>
+        <li><%= link_to("About", about_path, {class: "menu-item"}) %></li>
+        <li><%= link_to("Blog Posts", posts_path, {class: "menu-item"}) %></li>
+      </ul>
+      <ul class ="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "New Blog Post", new_post_path, {class: "menu-item"} %></li>
+          <li><%= link_to "Favourite Posts", favourites_path, {class: "menu-item"} %></li>
+          <li><%= link_to("Log Out", sessions_path, {class: "menu-item", method: :delete}) %></li>
+        <% else %>
+          <li><%= link_to "Sign In", new_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <% if notice %>
+      <div class="alert alert-success"><%= notice %></div>
+    <% elsif alert %>
+      <div class="alert alert-danger"><%= alert %></div>
+    <% end %>
+  </div>
 
-<%= yield %>
-
+  <%= yield %>
+</div>
 </body>
 </html>
